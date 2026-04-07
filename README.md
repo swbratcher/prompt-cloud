@@ -32,8 +32,7 @@ Becomes...
 
 ```aiworkmebottlenecknow bestgetoutmywaywithoutcompromisingfinalproduct codeexecution localagenticframework harnessdifficulty cantfullyletgo modelrecursivelylearnselfimprovebuildcapabilitiesgoalprogress oldthinkinginway ormodelsnotcapableenoughyet```
 
-
-(See prompt-cloud-directive.md for the complete, model-readable spec including strict compression/decompression rules.)
+***The original 532 chars compressed to 251 chars. A ~53% reduction is real input token savings for the model usage.***
 
 ## Recommended Workflow
 1. Keep .md files as your single source of truth (human-readable, version-controlled, editable).
