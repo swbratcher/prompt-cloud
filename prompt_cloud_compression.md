@@ -103,6 +103,20 @@ The human owns the `.md` source file. The model generates, regenerates, and cons
 
 The human never writes or edits `.pc.md` files directly. The model never edits the `.md` source without explicit instruction.
 
+## For Memory Applications
+
+Human memory operates in two modes. Factual memory stores what is true — names, dates, places, relationships. Impressionistic memory stores what matters about how — the shape of someone's personality, their communication style, what they value, what irritates them. Impressionistic memory is lossy by nature. You don't remember every word someone said. You remember what they meant and how it landed. That lossy impression still drives most of your behavior toward that person.
+
+Agent memory systems currently treat everything as factual — flat entries, uniform fidelity. This is wasteful for the behavioral layer, which is also the layer that bloats fastest as context accumulates.
+
+PC applies to agent memory by splitting it into two tiers:
+
+**Factual memory** stores entities, relationships, identifiers, and exact values. It's small, precise, and stays verbatim. "Co-founder is Scott." "Based in Springfield, Missouri." These don't compress — there's nothing to overlap.
+
+**Impressionistic memory** stores communication style, decision patterns, values, aversions, workflow philosophy, and behavioral boundaries. This is the natural domain for PC. Entries like "direct, stream-of-consciousness, values preserved deal math, dislikes harsh promotional tones, prefers open questions over sanitized conclusions" describe a behavioral shape, not a factual point. They compress well because overlapping semantic clusters is exactly how this kind of knowledge is stored and retrieved — by humans and by models.
+
+The practical outcome: agent memory systems that distinguish these two tiers and PC-compress the impressionistic layer can fit significantly more behavioral context in the same token budget. The behavioral layer is what makes an agent feel like it knows you. Not the facts.
+
 ## When to Skip This Entirely
 
 If your prompt is under 2k tokens, compression isn't worth the fidelity risk. If your prompt is mostly structured data, API specs, or exact instructions, compress the narrative parts and leave the structured parts intact. If you're debugging unexpected model behavior, decompress first — don't debug against compressed context.
