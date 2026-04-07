@@ -26,7 +26,12 @@ The tactic itself is self-describing and rule-bound — once loaded, any model c
 - When you’re managing a 1M+ context window and hitting compaction pressure, applying PC to the directive layers themselves frees meaningful headroom for the things that actually need precision: live facts, decisions, and operational state.
 
 ## How the Compression Works (Core Philosophy)
-yesloosechineseenglishasprogramminglanguage bundlescompoundoverlappingwordcloudmeanings sometimesidothis seriously encouragingllmfindsharedinterpretiveoverlaps roomforetherealgrasp floatingessenceintent directpointwithoutrigidcontractprecision llmdoesunderstandthisverythingfully
+```If I'm the bottleneck in my work with AI now, how can I best get out of my way without compromising the final product? I use AI for execution. I run a local framework that attempts to get agentic leadership at execution but the harness has difficulty so I've not been able to let go completely and let the model recursively learn and build on its capabilities and progress toward goals. I don't know if my old way of thinking is in the way, or if the models just aren't where I'm expecting them to be in their capabilities.```
+
+Becomes...
+
+```aiworkmebottlenecknow bestgetoutmywaywithoutcompromisingfinalproduct codeexecution localagenticframework harnessdifficulty cantfullyletgo modelrecursivelylearnselfimprovebuildcapabilitiesgoalprogress oldthinkinginway ormodelsnotcapableenoughyet```
+
 
 (See prompt-cloud-directive.md for the complete, model-readable spec including strict compression/decompression rules.)
 
