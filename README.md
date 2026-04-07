@@ -1,66 +1,79 @@
-# Prompt-Cloud Compression for Production Agent Systems
+Prompt-Cloud Intent Compression
+================================
 
-## Overview
-Prompt-Cloud (PC) is a lightweight, fully lossless compression tactic for LLM prompts. It turns verbose behavioral prose into dense, overlapping word-cloud compounds while preserving 100% of operator intent.
+For when intent matters more than precision.
 
-This technique was built for high-volume, 24/7 agent systems where the same system prompts, role definitions, and workflow rules are injected thousands of times per day. Even modest 40-60% token savings per injection compound into massive cost and context-window gains.
+Prompt-Cloud (PC) is a human-authored semantic compression technique for LLM prompts. It fuses overlapping concepts into dense compound tokens that activate the same behavioral patterns as the original verbose prompt — at 40-60% fewer tokens.
 
-The tactic itself is self-describing and rule-bound — once loaded, any model can compress, decompress, and execute with perfect fidelity.
+This is not an algorithmic tool. There is no library to install. PC is a tactic: a set of rules that teaches a model how to compress, decompress, and maintain prompt files in a paired .md / .pc.md format.
 
-## Key Findings from Real 24/7 Production Use
-- Your system prompt is usually ~60% behavioral prose and ~40% exact values.  
-  → Compress the prose aggressively.  
-  → Leave numbers, paths, entity names, threshold values, and security-critical statements verbatim.
 
-- Biggest payoff lives in high-frequency injection points:  
-  Every turn, every cycle, every dispatch, every tool call.  
-  A 30% reduction on a prompt that loads 10,000 times a day is real money and real context budget.
+What's in this repo
+-------------------
 
-- Role definitions and workflow enforcement rules compress extremely cleanly.  
-  They are pure intent. The model reconstructs the exact same behavioral frame from the dense form.
+prompt-cloud-tactic.md    The directive. Preload this into any session where
+                          you want the model to compress or consume PC content.
+                          Covers compression rules, decompression rules,
+                          version tracking, workflow, and memory applications.
 
-- Security rules with critical negations must stay verbatim.  
-  Never bury “NEVER do X” or “ALWAYS do Y” inside a compound token.  
-  The risk of softened negation is not worth the token saving.
+README.txt                You're reading it.
 
-- When you’re managing a 1M+ context window and hitting compaction pressure, applying PC to the directive layers themselves frees meaningful headroom for the things that actually need precision: live facts, decisions, and operational state.
 
-## How the Compression Works (Core Philosophy)
-```If I'm the bottleneck in my work with AI now, how can I best get out of my way without compromising the final product? I use AI for execution. I run a local framework that attempts to get agentic leadership at execution but the harness has difficulty so I've not been able to let go completely and let the model recursively learn and build on its capabilities and progress toward goals. I don't know if my old way of thinking is in the way, or if the models just aren't where I'm expecting them to be in their capabilities.```
+How it works
+------------
 
-Becomes...
+Natural language carries a lot of structural weight — articles, prepositions,
+conjugations — that adds tokens but not meaning for an LLM. PC strips that
+scaffolding and bundles semantically overlapping concepts into dense lowercase
+compound strings. The model pattern-matches these clusters against the same
+semantic space the original would have activated.
 
-```aiworkmebottlenecknow bestgetoutmywaywithoutcompromisingfinalproduct codeexecution localagenticframework harnessdifficulty cantfullyletgo modelrecursivelylearnselfimprovebuildcapabilitiesgoalprogress oldthinkinginway ormodelsnotcapableenoughyet```
+The result is functionally equivalent behavior at a fraction of the token cost.
 
-***The original 532 chars compressed to 251 chars. A ~53% reduction is real input token savings for the model usage.***
 
-## Recommended Workflow
-1. Keep .md files as your single source of truth (human-readable, version-controlled, editable).
-2. Compile a matching .pc.md version for runtime injection.
-3. Preload the Prompt-Cloud directive once at session start (or bake it into your base system prompt).
-4. Validate by behavior, not text diff:  
-   Run the same test suite or production scenario on both versions.  
-   If the agent acts identically, the compression is valid.
+When to use it
+--------------
 
-Never ship a .pc.md without having verified lossless intent reconstruction.
+- System prompts and pre-context that load repeatedly across sessions
+- Role definitions, behavioral directives, tone and style guidance
+- Agent memory (impressionistic tier — see the directive for details)
+- Any context where you're budget-constrained and the content is intent-shaped
 
-## When to Use Prompt-Cloud
-- Repeated system/role/workflow prompts
-- High-frequency agent loops
-- Context-window constrained environments
-- Cost-sensitive 24/7 production systems
 
-## When NOT to Use It
-- One-shot creative or highly nuanced prompts
-- Prompts containing critical negations or safety rules that must be crystal-clear on first read
-- Situations where you have zero tolerance for any compression technique (ultra-low-latency or ultra-high-stakes)
+When not to use it
+------------------
 
-## Files in This Repo
-- prompt-cloud-directive.md → The official reusable spec (preload this)
-- example-prompt.md + example-prompt.pc.md → Before/after pair
-- header-image.png → Visual explanation of human-to-model compression
+- Exact values: numbers, dates, URLs, API paths, model strings
+- Negations and exclusions that can't afford ambiguity
+- Conditional logic with specific branching
+- Content under 2k tokens (not worth the tradeoff)
+- Anything humans need to read directly
 
-## Bottom Line
-When tokens matter at scale, Prompt-Cloud turns repetitive prose into reusable, ultra-dense intent without sacrificing quality. The model understands this very thing fully — once the directive is in context, it just works.
 
-Happy compressing.
+Workflow
+--------
+
+1. Human writes and edits the .md source file.
+2. Model generates the .pc.md from the source, including a SHA-256 hash header.
+3. Model checks the hash before using the .pc.md. Stale hash = regenerate.
+4. Model consumes the .pc.md, decompressing internally at inference.
+
+The human never edits .pc.md files. The model never edits .md source files
+without explicit instruction.
+
+
+What this is not
+----------------
+
+This is not related to LLMLingua, CompactPrompt, or other algorithmic prompt
+compression tools that use smaller models to prune tokens automatically. Those
+operate at the token-information level. PC operates at the semantic-intent
+level through human-authored concept fusion. Different technique, different
+use case, complementary when needed.
+
+
+Origin
+------
+
+Developed by KD (Kriger Danes LLC). No dependencies, no license restrictions
+on the tactic itself. Use it however you want.
