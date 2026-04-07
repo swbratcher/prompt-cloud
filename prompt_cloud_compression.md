@@ -109,7 +109,13 @@ Human memory operates in two modes. Factual memory stores what is true — names
 
 Agent memory systems currently treat everything as factual — flat entries, uniform fidelity. This is wasteful for the behavioral layer, which is also the layer that bloats fastest as context accumulates.
 
-PC applies to agent memory by splitting it into two tiers:
+PC applies to agent memory at both storage and retrieval:
+
+**At storage** — when the agent writes a new memory entry from a conversation, impressionistic content can be extracted and stored directly in PC-compressed form. The model distills the behavioral signal from the conversation into a dense cloud at the point of writing, not as a post-processing step on verbose entries. The factual tier (names, entities, values) is extracted separately and stored verbatim.
+
+**At retrieval** — compressed impressionistic entries load into the context window at a fraction of the token cost of their full English equivalents. The model decompresses internally at inference time, reconstructing the behavioral shape it needs to act on.
+
+The full lifecycle: conversation → factual entries stored verbatim + impressionistic entries stored as PC → at session start, both tiers load into context → model acts on full behavioral shaping at lower token cost.
 
 **Factual memory** stores entities, relationships, identifiers, and exact values. It's small, precise, and stays verbatim. "Co-founder is Scott." "Based in Springfield, Missouri." These don't compress — there's nothing to overlap.
 
