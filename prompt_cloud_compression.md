@@ -117,7 +117,7 @@ PC applies to agent memory at both storage and retrieval:
 
 The full lifecycle: conversation → factual entries stored verbatim + impressionistic entries stored as PC → at session start, both tiers load into context → model acts on full behavioral shaping at lower token cost.
 
-**Factual memory** stores entities, relationships, identifiers, and exact values. It's small, precise, and stays verbatim. "Co-founder is Scott." "Based in Springfield, Missouri." These don't compress — there's nothing to overlap.
+**Factual memory** stores entities, relationships, identifiers, and exact values. It's small, precise, and stays verbatim. "Co-founder is Jim." "Based in Texas, California." These don't compress — there's nothing to overlap.
 
 **Impressionistic memory** stores communication style, decision patterns, values, aversions, workflow philosophy, and behavioral boundaries. This is the natural domain for PC. Entries like "direct, stream-of-consciousness, values preserved deal math, dislikes harsh promotional tones, prefers open questions over sanitized conclusions" describe a behavioral shape, not a factual point. They compress well because overlapping semantic clusters is exactly how this kind of knowledge is stored and retrieved — by humans and by models.
 
