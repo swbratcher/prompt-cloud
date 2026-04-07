@@ -1,4 +1,3 @@
-```txt
 # Prompt-Cloud Compression for Production Agent Systems
 
 ## Overview
@@ -61,4 +60,3 @@ Never ship a .pc.md without having verified lossless intent reconstruction.
 When tokens matter at scale, Prompt-Cloud turns repetitive prose into reusable, ultra-dense intent without sacrificing quality. The model understands this very thing fully — once the directive is in context, it just works.
 
 Happy compressing.
-```
