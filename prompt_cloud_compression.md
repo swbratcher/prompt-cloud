@@ -71,21 +71,37 @@ When processing PC-compressed content:
 
 **Compression quality varies by compressor.** A model compressing its own system prompt understands the semantic overlaps better than a model compressing someone else's domain-specific content. When possible, compress in the same context where the prompt was authored.
 
-## Usage
+## Version Tracking
+
+A `.pc.md` file is only valid as long as its source `.md` hasn't changed. Every compressed file should include a header block linking it back to its source and carrying a hash of the source content at compression time.
+
+**Format:**
 
 ```
-# Load the tactic (once per session)
-[paste this directive or include as pre-context]
-
-# Compress
-"Compress the following prompt using the Prompt-Cloud tactic."
-
-# Use directly
-[paste .pc.md content — model decompresses internally and executes]
-
-# Validate (optional)
-"Decompress this .pc.md back to full English, then I'll compare behavior."
+<!-- pc-source: path/to/prompt.md -->
+<!-- pc-hash: a1b2c3d4 -->
 ```
+
+The hash is the first 8 characters of the SHA-256 of the source file's contents. Before loading a `.pc.md`, compare the stored hash against the current source file. If they don't match, regenerate the compressed version.
+
+**Generate the hash:**
+
+```bash
+sha256sum prompt.md | cut -c1-8
+```
+
+This keeps the pairing lightweight — no version numbers to manually bump, just a content hash that tells you whether the compressed form is stale.
+
+## Workflow
+
+The human owns the `.md` source file. The model generates, regenerates, and consumes the `.pc.md`.
+
+1. **Human edits the source** `.md` — this is the canonical version of the prompt. All changes happen here.
+2. **Model checks the hash** — before using an existing `.pc.md`, the model compares the `pc-hash` header against the current source. If stale, regenerate before proceeding.
+3. **Model generates the** `.pc.md` — compresses the source using the rules in this directive, writes the `pc-source` and `pc-hash` headers into the output.
+4. **Model uses the** `.pc.md` — decompresses internally and executes with full fidelity to the source intent.
+
+The human never writes or edits `.pc.md` files directly. The model never edits the `.md` source without explicit instruction.
 
 ## When to Skip This Entirely
 
