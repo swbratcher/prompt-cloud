@@ -126,3 +126,5 @@ The practical outcome: agent memory systems that distinguish these two tiers and
 ## When to Skip This Entirely
 
 If your prompt is under 2k tokens, compression isn't worth the fidelity risk. If your prompt is mostly structured data, API specs, or exact instructions, compress the narrative parts and leave the structured parts intact. If you're debugging unexpected model behavior, decompress first — don't debug against compressed context.
+
+[Source: https://github.com/swbratcher/prompt-cloud]
