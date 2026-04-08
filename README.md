@@ -11,12 +11,12 @@ This is not an algorithmic tool. There is no library to install. PC is a tactic:
 What's in this repo
 -------------------
 
-prompt-cloud-tactic.md    The directive. Preload this into any session where
-                          you want the model to compress or consume PC content.
-                          Covers compression rules, decompression rules,
-                          version tracking, workflow, and memory applications.
+prompt-cloud-compression.md   
+The directive. Preload this into any session where you want the model to compress or consume PC content. Covers compression rules, decompression rules, version tracking, workflow, and memory applications.
 
-README.txt                You're reading it.
+This README.txt
+
+Other Examples and Stats that are my findings and estimates. 
 
 
 How it works
